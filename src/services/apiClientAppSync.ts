@@ -1,6 +1,7 @@
 import * as AWS from 'aws-sdk'
 import AWSAppSyncClient from 'aws-appsync'
 import {AUTH_TYPE} from 'aws-appsync/lib/client'
+import {updatePosition} from "../graphql/updatePosition";
 
 
 AWS.config.update({
@@ -11,7 +12,7 @@ AWS.config.update({
     }),
 });
 
-export default new AWSAppSyncClient({
+export const client = new AWSAppSyncClient({
     url: 'https://efmtgafdgrabfamesyqszszv5e.appsync-api.eu-central-1.amazonaws.com/graphql',
     region: 'eu-central-1',
     auth: {
@@ -19,3 +20,19 @@ export default new AWSAppSyncClient({
         credentials: AWS.config.credentials!,
     },
 });
+
+export const motionHandler = (screenId: string, playerId: string, color: string, direction = 0): void => {
+    (async () => {
+        const result: any = await client.mutate({
+            mutation: updatePosition,
+            variables: {
+                screenId,
+                playerId,
+                angle: direction,
+                color,
+            }
+        });
+
+        console.log(result.data.updatePosition);
+    })();
+};

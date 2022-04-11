@@ -1,43 +1,16 @@
-import React from 'react'
-import client from './services/apiClientAppSync';
+import React, {useState} from 'react'
 import './App.css';
-import {updatePosition} from "./graphql/updatePosition";
-
-const screenId = '246516c0-aad9-4bbf-818b-a39738bc6017';
-
-const motionHandler = (angle = 25) => {
-    (async () => {
-        const result: any = await client.mutate({
-            mutation: updatePosition,
-            variables: {
-                screenId: screenId,
-                playerId: '1111',
-                angle: Math.round(angle),
-                color: '#FF69B4',
-            }
-        });
-
-        console.log(result.data.updatePosition);
-    })();
-};
-
-function handleClickRight () {
-    motionHandler();
-}
-
-function handleClickLeft () {
-    motionHandler(-25);
-}
-
-
+import InitialScreen from "./components/initialScreen/InitialScreen";
+import Controllers from "./components/controllers/Controllers";
 
 function App() {
-  return (
-    <div className="App">
-        <button onClick={handleClickLeft}>Left</button>
-        <button onClick={handleClickRight}>Right</button>
-    </div>
-  );
+    const [showControls, setShowControls] = useState(false);
+
+    return (
+        <div className="App">
+            {showControls ? <Controllers/> : <InitialScreen showControls={setShowControls}/>}
+        </div>
+    );
 }
 
 export default App;
