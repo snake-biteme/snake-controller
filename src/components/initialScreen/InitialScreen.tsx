@@ -1,16 +1,10 @@
 import React, {useState} from 'react';
 import {motionHandler} from "../../services/apiClientAppSync";
-
-const {v4: uuidv4} = require('uuid');
+import {defColor, playerId, screenId} from "../../CONSTS";
 
 interface IProps {
     showControls: Function,
 }
-
-const screenId = 'asdfsdfasdfsd'
-const playerId = uuidv4();
-const defColor = '#ff69b4'
-
 
 function InitialScreen(props: IProps) {
      const [name, setName] = useState('');
@@ -21,7 +15,7 @@ function InitialScreen(props: IProps) {
         console.log(name) // todo add to schema
         console.log(color)
         // console.log(event.target)
-        // props.showControls(true);
+        props.showControls(true);
         motionHandler(screenId, playerId, color);
     }
 

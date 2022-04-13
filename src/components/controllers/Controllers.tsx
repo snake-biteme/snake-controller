@@ -1,4 +1,6 @@
 import React from 'react';
+import {motionHandler} from "../../services/apiClientAppSync";
+import {defColor, playerId, screenId} from "../../CONSTS";
 
 function Controllers() {
     const UP = 1;
@@ -7,30 +9,17 @@ function Controllers() {
     const RIGHT = 4;
 
     function handleClick(direction: number) {
-        // motionHandler(direction);
+        motionHandler(screenId, playerId, defColor, direction);
     }
 
     return (
         <div>
-            <button onClick={() => {
-                handleClick(UP)
-            }}>Up
-            </button>
-
+            <button onClick={() => handleClick(UP)}>Up</button>
             <div className="leftRight">
-                <button onClick={() => {
-                    handleClick(LEFT)
-                }}>Left
-                </button>
-                <button onClick={() => {
-                    handleClick(RIGHT)
-                }}>Right
-                </button>
+                <button onClick={() => handleClick(LEFT)}>Left</button>
+                <button onClick={() => handleClick(RIGHT)}>Right</button>
             </div>
-            <button onClick={() => {
-                handleClick(DOWN)
-            }}>Down
-            </button>
+            <button onClick={() => handleClick(DOWN)}>Down</button>
         </div>
     );
 }
