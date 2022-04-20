@@ -3,18 +3,20 @@ import AWSAppSyncClient from 'aws-appsync'
 import {AUTH_TYPE} from 'aws-appsync/lib/client'
 import {updatePosition} from "../graphql/updatePosition";
 
+const { REACT_APP_REGION, REACT_APP_ACCESS_KEY_ID, REACT_APP_SECRET_ACCESS_KEY, REACT_APP_URL } = process.env
+
 
 AWS.config.update({
-    region: 'eu-west-1',
+    region: REACT_APP_REGION!,
     credentials: new AWS.Credentials({
-        accessKeyId: 'AKIAQ3BCCU7B5N7VQTPR',
-        secretAccessKey: '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',
+        accessKeyId: REACT_APP_ACCESS_KEY_ID!,
+        secretAccessKey: REACT_APP_SECRET_ACCESS_KEY!,
     }),
 });
 
 export const client = new AWSAppSyncClient({
-    url: 'https://3yawg75a7jb5zng4j2fvdu3ijq.appsync-api.eu-west-1.amazonaws.com/graphql',
-    region: 'eu-west-1',
+    url: REACT_APP_URL!,
+    region: REACT_APP_REGION!,
     auth: {
         type: AUTH_TYPE.AWS_IAM,
         credentials: AWS.config.credentials!,
