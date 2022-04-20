@@ -3,12 +3,12 @@ import {motionHandler} from "../../services/apiClientAppSync";
 import {defColor, playerId, screenId} from "../../CONSTS";
 
 function Controllers() {
-    const UP = 1;
-    const DOWN = 2;
-    const LEFT = 3;
-    const RIGHT = 4;
+    const UP = 'UP';
+    const DOWN = 'DOWN';
+    const LEFT = 'LEFT';
+    const RIGHT = 'RIGHT';
 
-    function handleClick(direction: number) {
+    function handleClick(direction: string) {
         motionHandler(screenId, playerId, defColor, direction);
     }
 

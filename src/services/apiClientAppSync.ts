@@ -21,14 +21,15 @@ export const client = new AWSAppSyncClient({
     },
 });
 
-export const motionHandler = (screenId: string, playerId: string, color: string, direction = 0): void => {
+export const motionHandler = (screenId: string, playerId: string, color: string, direction = 'RIGHT'): void => {
+    console.log(screenId, playerId, color, direction);
     (async () => {
         const result: any = await client.mutate({
             mutation: updatePosition,
             variables: {
                 screenId,
                 playerId,
-                angle: direction,
+                direction,
                 color,
             }
         });
