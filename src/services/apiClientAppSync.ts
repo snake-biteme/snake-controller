@@ -28,9 +28,6 @@ export const motionHandler = (screenId: string, playerId: string, color: string,
         name = 'Player'
     }
 
-    console.log(screenId, playerId, color, direction, name);
-
-
     (async () => {
         const result: any = await client.mutate({
             mutation: updatePosition,
@@ -42,7 +39,6 @@ export const motionHandler = (screenId: string, playerId: string, color: string,
                 name,
             }
         });
-        console.log(result)
-        console.log(result.data.updatePosition);
+        // console.log(result.data.updatePosition);
     })();
 };
