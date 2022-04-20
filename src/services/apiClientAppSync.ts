@@ -5,16 +5,16 @@ import {updatePosition} from "../graphql/updatePosition";
 
 
 AWS.config.update({
-    region: 'eu-central-1',
+    region: 'eu-west-1',
     credentials: new AWS.Credentials({
-        accessKeyId: 'AKIAXSHWDEE3TL4PZPE5',
-        secretAccessKey: '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',
+        accessKeyId: 'AKIAQ3BCCU7B5N7VQTPR',
+        secretAccessKey: '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',
     }),
 });
 
 export const client = new AWSAppSyncClient({
-    url: 'https://efmtgafdgrabfamesyqszszv5e.appsync-api.eu-central-1.amazonaws.com/graphql',
-    region: 'eu-central-1',
+    url: 'https://3yawg75a7jb5zng4j2fvdu3ijq.appsync-api.eu-west-1.amazonaws.com/graphql',
+    region: 'eu-west-1',
     auth: {
         type: AUTH_TYPE.AWS_IAM,
         credentials: AWS.config.credentials!,
