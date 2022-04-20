@@ -12,11 +12,9 @@ function InitialScreen(props: IProps) {
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        console.log(name) // todo add to schema
-        console.log(color)
         // console.log(event.target)
         props.showControls(true);
-        motionHandler(screenId, playerId, color);
+        motionHandler(screenId, playerId, color, name);
     }
 
     return (

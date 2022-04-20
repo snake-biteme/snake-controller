@@ -9,7 +9,7 @@ function Controllers() {
     const RIGHT = 'RIGHT';
 
     function handleClick(direction: string) {
-        motionHandler(screenId, playerId, defColor, direction);
+        motionHandler(screenId, playerId, defColor, 'Hello', direction);
     }
 
     return (
