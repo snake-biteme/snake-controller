@@ -4,16 +4,19 @@ import {defColor, playerId, screenId} from "../../CONSTS";
 
 interface IProps {
     showControls: Function,
+    setName: Function,
+    name: string,
+    setColor: Function,
+    color:string,
 }
 
-function InitialScreen(props: IProps) {
-     const [name, setName] = useState('');
-     const [color, setColor] = useState(defColor);
+function InitialScreen({showControls, setName, name, setColor, color}: IProps) {
+
 
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         // console.log(event.target)
-        props.showControls(true);
+        showControls(true);
         motionHandler(screenId, playerId, color, name);
     }
 

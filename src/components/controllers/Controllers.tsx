@@ -1,15 +1,20 @@
 import React from 'react';
 import {motionHandler} from "../../services/apiClientAppSync";
-import {defColor, playerId, screenId} from "../../CONSTS";
+import {playerId, screenId} from "../../CONSTS";
 
-function Controllers() {
+interface IProps {
+    name: string,
+    color: string
+}
+
+function Controllers({name, color}: IProps) {
     const UP = 'UP';
     const DOWN = 'DOWN';
     const LEFT = 'LEFT';
     const RIGHT = 'RIGHT';
 
     function handleClick(direction: string) {
-        motionHandler(screenId, playerId, defColor, 'Hello', direction);
+        motionHandler(screenId, playerId, color, name, direction);
     }
 
     return (
