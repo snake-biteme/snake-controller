@@ -1,10 +1,9 @@
-import * as AWS from 'aws-sdk'
-import AWSAppSyncClient from 'aws-appsync'
-import {AUTH_TYPE} from 'aws-appsync/lib/client'
-import {updatePosition} from "../graphql/updatePosition";
+import * as AWS from 'aws-sdk';
+import AWSAppSyncClient from 'aws-appsync';
+import {AUTH_TYPE} from 'aws-appsync/lib/client';
+import {updatePosition} from '../graphql/updatePosition';
 
-const { REACT_APP_REGION, REACT_APP_ACCESS_KEY_ID, REACT_APP_SECRET_ACCESS_KEY, REACT_APP_URL } = process.env
-
+const { REACT_APP_REGION, REACT_APP_ACCESS_KEY_ID, REACT_APP_SECRET_ACCESS_KEY, REACT_APP_URL } = process.env;
 
 AWS.config.update({
     region: REACT_APP_REGION!,
@@ -23,13 +22,13 @@ export const client = new AWSAppSyncClient({
     },
 });
 
-export const motionHandler = (screenId: string, playerId: string, color: string, name: string = 'PLAYER', direction = 'RIGHT'): void => {
+export const motionHandler = (screenId: string, playerId: string, color: string, name = 'PLAYER', direction = 'RIGHT'): void => {
     if (name === '') {
-        name = 'Player'
+        name = 'Player';
     }
 
     (async () => {
-        const result: any = await client.mutate({
+        await client.mutate({
             mutation: updatePosition,
             variables: {
                 screenId,
@@ -39,6 +38,5 @@ export const motionHandler = (screenId: string, playerId: string, color: string,
                 name,
             }
         });
-        // console.log(result.data.updatePosition);
     })();
 };

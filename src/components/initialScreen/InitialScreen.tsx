@@ -1,12 +1,13 @@
-import React, {useState} from 'react';
-import {motionHandler} from "../../services/apiClientAppSync";
-import {defColor, playerId, screenId} from "../../CONSTS";
+import React, { Dispatch, SetStateAction} from 'react';
+import {motionHandler} from '../../services/apiClientAppSync';
+import {playerId, screenId} from '../../CONSTS';
 
 interface IProps {
-    showControls: Function,
-    setName: Function,
+    // setState hook types: https://stackoverflow.com/a/56028976/18631517
+    showControls: Dispatch<SetStateAction<boolean>>,
+    setName: Dispatch<SetStateAction<string>>,
     name: string,
-    setColor: Function,
+    setColor: Dispatch<SetStateAction<string>>,
     color:string,
 }
 

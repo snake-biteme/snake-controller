@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 export const updatePosition = gql`
     mutation UpdatePosition($screenId: ID!, $playerId: ID!, $direction: String!, $color: String!, $name: String!) {

@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState} from 'react';
 import './App.css';
-import InitialScreen from "./components/initialScreen/InitialScreen";
-import Controllers from "./components/controllers/Controllers";
-import {defColor} from "./CONSTS";
+import InitialScreen from './components/initialScreen/InitialScreen';
+import Controllers from './components/controllers/Controllers';
+import {defColor} from './CONSTS';
 
 function App() {
     const [name, setName] = useState('');
