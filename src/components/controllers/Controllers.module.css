@@ -15,3 +15,9 @@
 .spaceRight {
     margin-right: 60px;
 }
+
+.name{
+    margin-bottom: 10vh;
+    font-size: 50px;
+    color: white;
+}

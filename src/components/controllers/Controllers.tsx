@@ -20,6 +20,7 @@ function Controllers({name, color}: IProps) {
 
     return (
         <div>
+            <h2 className={styles.name}>{name}</h2>
             <button className={styles.direction} onClick={() => handleClick(UP)}>Up</button>
             <div className="leftRight">
                 <button className={`${styles.direction} ${styles.spaceRight}`} onClick={() => handleClick(LEFT)}>Left</button>
