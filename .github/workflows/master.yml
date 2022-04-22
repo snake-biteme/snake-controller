@@ -1,0 +1,72 @@
+name: Master
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      - name: Install dependencies
+        run: npm install
+      #      - name: Test
+      #        run: npm test
+      #        env:
+      #          CI: true
+      - name: Generate build
+        run: npm run build
+        env:
+          CI: false
+      # Share artifact inside workflow
+      - name: Store Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: biteme-controller-build
+          path: build
+  zip:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Download built artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: biteme-controller-build
+      - name: Zip build
+        uses: thedoctor0/zip-release@master
+        with:
+          filename: biteme-controller-release-build.zip
+          path: biteme-controller-build
+            # Upload as an artifact of the current workflow
+      - name: Upload build zip artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: biteme-controller-release-build.zip
+          path: biteme-controller-release-build.zip
+  deploy:
+    runs-on: ubuntu-latest
+    # When application is successfully tested and build has been generated
+    # Then we can start with deployment
+    needs: zip
+    steps:
+      # Download previously shared build
+      - name: Download built ZIP artifact
+        uses: actions/download-artifact@v1
+        with:
+          name: biteme-controller-release-build.zip
+      # Set the credentials from repository settings/secrets
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: eu-west-1
+      # Copy the files from build folder to the S3 bucket
+      - name: Deploy to S3
+        run: aws s3 sync . s3://biteme-release/controller/ --acl public-read
+        working-directory: biteme-controller-release-build.zip
