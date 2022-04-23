@@ -9,6 +9,10 @@ NC =\033[0m\n# No Color
 
 version := $(shell git describe --tags --match="v*")
 
+.PHONY: version
+version:
+	@(printf "${BG}My version is $(version) ${NC}")
+
 .PHONY: all
 all: clean app
 .PHONY: clean
