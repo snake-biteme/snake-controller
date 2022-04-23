@@ -43,7 +43,7 @@ app: npm build
 .PHONY: package
 package: app
 	@(printf "${BG}Create package${NC}")
-		cd $(root_project) && node_modules/.bin/gulp buildPackage --appVersion=$(version)
+		cd $(root_project) && node_modules/.bin/gulp package --appVersion=$(version)
 
 	@(printf "${BG}Package version $(version) is ready${NC}")
 		echo $(version) >$(release)/latest.version

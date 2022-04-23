@@ -10,4 +10,6 @@ const buildZip = () => {
         .pipe(gulp.dest('production/release/'));
 };
 
-export const buildPackage = gulp.series(buildZip);
+const buildPackage = gulp.series(buildZip);
+
+module.exports.package = buildPackage;
