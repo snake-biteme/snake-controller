@@ -52,7 +52,6 @@ package: app
 	@(printf "${BG}Package version $(version) is ready${NC}")
 		echo $(version) >$(release)/latest.version
 
-
 .PHONY: qa
 qa:
 	@(printf "${BG}Prepare log directory${NC}")
@@ -67,12 +66,12 @@ qa:
 .PHONY: release
 release:
 	@(printf "${BG}Upload package to S3 repository${NC}")
-		aws s3 cp $(release)/latest.version "s3://biteme-release/dev/biteme-controller.version";
-		aws s3 cp $(release)/biteme-controller.zip "s3://biteme-release/dev/biteme-controller.zip";
-		aws s3 cp $(release)/biteme-controller.zip "s3://biteme-release/dev/biteme-controller-$(version).zip";
+		aws s3 cp $(release)/latest.version "s3://biteme-release/dev/controller.version";
+		aws s3 cp $(release)/biteme-controller.zip "s3://biteme-release/dev/controller.zip";
+		aws s3 cp $(release)/biteme-controller.zip "s3://biteme-release/dev/controller-$(version).zip";
 
 		if [ `echo ${version} | egrep "^v[0-9]+(+\.[0-9]+){2}$$"` ]; then \
-			aws s3 cp $(release)/latest.version "s3://biteme-release/stable/biteme-frontend.version"; \
-			aws s3 cp $(release)/biteme-controller.zip "s3://biteme-release/stable/biteme-controller.zip"; \
-			aws s3 cp $(release)/biteme-controller.zip "s3://biteme-release/stable/biteme-controller-$(version).zip"; \
+			aws s3 cp $(release)/latest.version "s3://biteme-release/stable/controller.version"; \
+			aws s3 cp $(release)/biteme-controller.zip "s3://biteme-release/stable/controller.zip"; \
+			aws s3 cp $(release)/biteme-controller.zip "s3://biteme-release/stable/controller-$(version).zip"; \
 		fi
