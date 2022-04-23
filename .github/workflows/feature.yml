@@ -29,13 +29,8 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - name: Install dependencies
-        run: npm install
-      #      - name: Test
-      #        run: npm test
-      #        env:
-      #          CI: true
-      - name: Generate build
-        run: npm run build
-        env:
-          CI: false
+      - name: Build
+        run: make -C production/ package
+
+#      - name: QA
+#        run: make -C production/ qa
