@@ -31,3 +31,6 @@ jobs:
 
       - name: Build
         run: make -C production/ package
+
+#      - name: QA
+#        run: make -C production/ qa

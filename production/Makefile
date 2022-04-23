@@ -47,3 +47,28 @@ package: app
 
 	@(printf "${BG}Package version $(version) is ready${NC}")
 		echo $(version) >$(release)/latest.version
+
+
+.PHONY: qa
+qa:
+	@(printf "${BG}Prepare log directory${NC}")
+		mkdir -p $(root_project)/log
+
+	@(printf "${BG}Running tests${NC}")
+		cd $(root_project) && export FORCE_COLOR=1 && npm test
+
+	@(printf "${BG}Running Flow${NC}")
+		cd $(root_project) && node_modules/.bin/flow check --show-all-errors || true
+
+.PHONY: release
+release:
+	@(printf "${BG}Upload package to S3 repository${NC}")
+		aws s3 cp $(release)/latest.version "s3://biteme-release/dev/biteme-controller.version";
+		aws s3 cp $(release)/escootie-frontend.zip "s3://biteme-release/dev/biteme-controller.zip";
+		aws s3 cp $(release)/escootie-frontend.zip "s3://biteme-release/dev/biteme-controller-$(version).zip";
+
+		if [ `echo ${version} | egrep "^v[0-9]+(+\.[0-9]+){2}$$"` ]; then \
+			aws s3 cp $(release)/latest.version "s3://biteme-release/stable/biteme-frontend.version"; \
+			aws s3 cp $(release)/escootie-frontend.zip "s3://biteme-release/stable/biteme-controller.zip"; \
+			aws s3 cp $(release)/escootie-frontend.zip "s3://biteme-release/stable/biteme-controller-$(version).zip"; \
+		fi
