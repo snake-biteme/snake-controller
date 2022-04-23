@@ -17,11 +17,6 @@ clean:
 		rm -rf $(build)
 		rm -rf $(release)
 
-.PHONY: list
-list:
-	@(printf "${BG}Check all the files${NC}")
-		cd $(root_project) && ls -l
-
 .PHONY: npm
 npm:
 	@(printf "${BG}Installing NPM dependencies${NC}")
@@ -33,22 +28,23 @@ build:
 		cd $(root_project) && npm run build
 
 .PHONY: app
-app: list npm build
+app: npm build
 	@(printf "${BG}Preparing build directory${NC}")
 		mkdir -p $(build)
 		mkdir -p $(release)
-
-	@(printf "${BG}Running build${NC}")
-		cd $(root_project) && npm run build
 
 	@(printf "${BG}Generating version file${NC}")
 		echo "VERSION=$(version)" >$(build)/version.txt
 		echo "BUILD_DATE=$(shell date --utc +%FT%TZ)" >>$(build)/version.txt
 
+	@(printf "${BG}Copying app to build directory${NC}")
+		cp -r $(root_project)/build/* $(build)/
+		rm -r $(build)/icons
+
 .PHONY: package
 package: app
 	@(printf "${BG}Create package${NC}")
-		cd $(root_project) && node_modules/.bin/gulp package --appVersion=$(version)
+		cd $(root_project) && node_modules/.bin/gulp buildPackage --appVersion=$(version)
 
 	@(printf "${BG}Package version $(version) is ready${NC}")
 		echo $(version) >$(release)/latest.version
