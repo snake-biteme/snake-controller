@@ -29,7 +29,7 @@ npm:
 
 .PHONY: build
 build:
-	@(printf "${BG}Build${NC}")
+	@(printf "${BG}Running build${NC}")
 		cd $(root_project) && npm run build
 
 .PHONY: app
