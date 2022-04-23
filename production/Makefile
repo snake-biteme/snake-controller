@@ -39,7 +39,6 @@ app: npm build
 
 	@(printf "${BG}Copying app to build directory${NC}")
 		cp -r $(root_project)/build/* $(build)/
-		rm -r $(build)/icons
 
 .PHONY: package
 package: app
