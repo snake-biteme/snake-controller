@@ -30,4 +30,4 @@ jobs:
             ${{ runner.os }}-
 
       - name: Build
-        run: make -C production/ list
+        run: make -C production/ package
