@@ -8,10 +8,12 @@ BG =\n\033[0;36m-- # Beginning
 NC =\033[0m\n# No Color
 
 version := $(shell git describe --tags --match="v*")
+status := $(shell git status)
 
 .PHONY: version
 version:
 	@(printf "${BG}My version is $(version) ${NC}")
+	@(printf "${BG}status $(status) ${NC}")
 
 .PHONY: all
 all: clean app
