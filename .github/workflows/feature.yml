@@ -29,5 +29,5 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-        - name: Build
-          run: make -C production/ list
+      - name: Build
+        run: make -C production/ list
