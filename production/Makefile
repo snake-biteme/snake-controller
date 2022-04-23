@@ -35,14 +35,15 @@ build:
 .PHONY: app
 app: list npm build
 	@(printf "${BG}Preparing build directory${NC}")
+		mkdir -p $(build)
 		mkdir -p $(release)
+
+	@(printf "${BG}Running build${NC}")
+		cd $(root_project) && npm run build
 
 	@(printf "${BG}Generating version file${NC}")
 		echo "VERSION=$(version)" >$(build)/version.txt
 		echo "BUILD_DATE=$(shell date --utc +%FT%TZ)" >>$(build)/version.txt
-
-	@(printf "${BG}Running Gulp tasks${NC}")
-		cd $(root_project) && export FORCE_COLOR=1 && node_modules/.bin/gulp production --appVersion=$(version)
 
 .PHONY: package
 package: app
