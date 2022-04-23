@@ -1,6 +1,6 @@
 import React from 'react';
 import {motionHandler} from '../../services/apiClientAppSync';
-import {playerId, screenId} from '../../CONSTS';
+import {playerId, screenId} from '../../consts';
 import styles from './Controllers.module.css';
 
 interface IProps {

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import './App.css';
 import InitialScreen from './components/initialScreen/InitialScreen';
 import Controllers from './components/controllers/Controllers';
-import {defColor} from './CONSTS';
+import {defColor} from './consts';
 
 function App() {
     const [name, setName] = useState('');
