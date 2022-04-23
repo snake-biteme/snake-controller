@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 root_project = ..
-#todo check for all paths that require build folder!
 build = "$(root_project)/production/build"
 release = "$(root_project)/production/release"
 
@@ -66,12 +65,12 @@ qa:
 .PHONY: release
 release:
 	@(printf "${BG}Upload package to S3 repository${NC}")
-		aws s3 cp $(release)/latest.version "s3://biteme-release/dev/controller.version";
-		aws s3 cp $(release)/biteme-controller.zip "s3://biteme-release/dev/controller.zip";
-		aws s3 cp $(release)/biteme-controller.zip "s3://biteme-release/dev/controller-$(version).zip";
+		aws s3 cp $(release)/latest.version "s3://biteme-release/dev/biteme-controller.version";
+		aws s3 cp $(release)/biteme-controller.zip "s3://biteme-release/dev/biteme-controller.zip";
+		aws s3 cp $(release)/biteme-controller.zip "s3://biteme-release/dev/biteme-controller-$(version).zip";
 
 		if [ `echo ${version} | egrep "^v[0-9]+(+\.[0-9]+){2}$$"` ]; then \
-			aws s3 cp $(release)/latest.version "s3://biteme-release/stable/controller.version"; \
-			aws s3 cp $(release)/biteme-controller.zip "s3://biteme-release/stable/controller.zip"; \
-			aws s3 cp $(release)/biteme-controller.zip "s3://biteme-release/stable/controller-$(version).zip"; \
+			aws s3 cp $(release)/latest.version "s3://biteme-release/stable/biteme-controller.version"; \
+			aws s3 cp $(release)/biteme-controller.zip "s3://biteme-release/stable/biteme-controller.zip"; \
+			aws s3 cp $(release)/biteme-controller.zip "s3://biteme-release/stable/biteme-controller-$(version).zip"; \
 		fi
