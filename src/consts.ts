@@ -16,3 +16,8 @@ export const API_URL: string = rootElement?.getAttribute('data-api-url') || '';
 export const AWS_REGION: string = rootElement?.getAttribute('data-aws-region') || 'eu-west-1';
 export const AWS_ACCESS_KEY_ID: string = rootElement?.getAttribute('data-access-key-id') || '';
 export const AWS_SECRET_ACCESS_KEY: string = rootElement?.getAttribute('data-secret-access-key') || '';
+
+export const UP = 'UP';
+export const DOWN = 'DOWN';
+export const LEFT = 'LEFT';
+export const RIGHT = 'RIGHT';

@@ -11,6 +11,7 @@ function App() {
     const custStyle = {
         background: `linear-gradient(45deg, var(--primary-color), ${color === '' ? 'var(--secondary-color)' : color})`
     };
+
     return (
         <div className="App" style={custStyle}>
             {showControls ?

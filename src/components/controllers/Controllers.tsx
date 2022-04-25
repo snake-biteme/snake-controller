@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {motionHandler} from '../../services/apiClientAppSync';
-import {playerId, screenId} from '../../consts';
+import {DOWN, LEFT, playerId, RIGHT, screenId, UP} from '../../consts';
 import styles from './Controllers.module.css';
+import VerticalControllers from './VerticalControllers/VerticalControllers';
+import HorizontalControllers from './HorizontalControllers/HorizontalControllers';
 
 interface IProps {
     name: string,
@@ -9,24 +11,27 @@ interface IProps {
 }
 
 function Controllers({name, color}: IProps) {
-    const UP = 'UP';
-    const DOWN = 'DOWN';
-    const LEFT = 'LEFT';
-    const RIGHT = 'RIGHT';
+    const [isPortrait, setPortrait] = useState<boolean>(checkPortrait());
+
+    function checkPortrait(): boolean {
+        return window.matchMedia('(orientation: portrait)').matches;
+    }
+
+    window.onresize = function () {
+        setPortrait(checkPortrait());
+    };
 
     function handleClick(direction: string) {
+        // send updated position to appsync
         motionHandler(screenId, playerId, color, name, direction);
     }
 
     return (
-        <div>
-            <h2 className={styles.name}>{name}</h2>
-            <button className={styles.direction} onClick={() => handleClick(UP)}>Up</button>
-            <div className="leftRight">
-                <button className={`${styles.direction} ${styles.spaceRight}`} onClick={() => handleClick(LEFT)}>Left</button>
-                <button className={styles.direction} onClick={() => handleClick(RIGHT)}>Right</button>
-            </div>
-            <button className={styles.direction} onClick={() => handleClick(DOWN)}>Down</button>
+        <div className={styles.container}>
+            {(name !== '') && (isPortrait ? <h2 className={styles.name}>{name}</h2> : <h2 className={`${styles.name} ${styles.lower}`}>{name}</h2>)}
+            {isPortrait ?
+                <VerticalControllers handleClick={handleClick}/> :
+                <HorizontalControllers handleClick={handleClick}/>}
         </div>
     );
 }

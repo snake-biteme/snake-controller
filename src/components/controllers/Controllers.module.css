@@ -1,8 +1,12 @@
-.direction {
-    height: 120px;
-    width: 120px;
-    border-radius: 50%;
+.container {
+    width: 100%;
     margin: 10px;
+}
+
+.direction {
+    min-height: 35vw;
+    min-width: 35vw;
+    border-radius: 50%;
     transition: transform .2s ease-in-out;
     box-shadow: 0 15px 60px hsla(0, 0%, 0%, 0.2);
 }
@@ -20,4 +24,20 @@
     margin-bottom: 10vh;
     font-size: 50px;
     color: white;
+}
+.horizontal {
+    display: flex;
+    justify-content: space-between;
+}
+
+.up {
+    margin-bottom: -20px;
+}
+
+.down {
+    margin-top: -20px;
+}
+
+.lower {
+    margin: 0 0 -70px;
 }
