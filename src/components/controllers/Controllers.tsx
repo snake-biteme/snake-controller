@@ -24,6 +24,9 @@ function Controllers({name, color}: IProps) {
     function handleClick(direction: string) {
         // send updated position to appsync
         motionHandler(screenId, playerId, color, name, direction);
+
+        // vibrate phone (not supported on safari)
+        navigator.vibrate([200]);
     }
 
     return (
