@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {motionHandler} from '../../services/apiClientAppSync';
-import {DOWN, LEFT, playerId, RIGHT, screenId, UP} from '../../consts';
+import {playerId, screenId} from '../../consts';
 import styles from './Controllers.module.css';
 import VerticalControllers from './VerticalControllers/VerticalControllers';
 import HorizontalControllers from './HorizontalControllers/HorizontalControllers';
