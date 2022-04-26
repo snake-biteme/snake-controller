@@ -26,7 +26,7 @@ function Controllers({name, color}: IProps) {
         motionHandler(screenId, playerId, color, name, direction);
 
         // vibrate phone (not supported on safari)
-        navigator.vibrate([200]);
+        navigator.vibrate([100]);
     }
 
     return (
