@@ -12,19 +12,20 @@
 }
 
 .direction:active {
-	transform: scale(1.1);
-	transition: .1s;
+    transform: scale(1.1);
+    transition: .1s;
 }
 
 .spaceRight {
     margin-right: 60px;
 }
 
-.name{
+.name {
     margin-bottom: 10vh;
     font-size: 50px;
     color: white;
 }
+
 .horizontal {
     display: flex;
     justify-content: space-between;
@@ -32,10 +33,32 @@
 
 .up {
     margin-bottom: -20px;
+    background-image: url("../../images/up.svg");
+    background-position: center;
+    background-size: 76%;
+    background-repeat: no-repeat;
 }
 
 .down {
     margin-top: -20px;
+    background-image: url("../../images/down.svg");
+    background-position: center;
+    background-size: 76%;
+    background-repeat: no-repeat;
+}
+
+.left {
+    background-image: url("../../images/left.svg");
+    background-position: center;
+    background-size: 42%;
+    background-repeat: no-repeat;
+}
+
+.right {
+    background-image: url("../../images/right.svg");
+    background-position: center;
+    background-size: 42%;
+    background-repeat: no-repeat;
 }
 
 .lower {
