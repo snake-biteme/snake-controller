@@ -1,7 +1,7 @@
 # 🎮 Controller for BiteMe
 
-##BiteMe
-BiteMe is a multiplayer snake game
+## Runs on
+node v18
 
 ## Start
 ```bash
